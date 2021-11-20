@@ -1,0 +1,45 @@
+-- asciiart MySQL
+
+create table canvas(y int, line char(80));
+
+delimiter //
+create procedure asciiart()
+begin
+	declare i, x, y int;
+	declare a, b, t, ca, cb float;
+	declare s char(1);
+	declare line char(80);
+
+	set y = -12;
+	while y <= 12 do
+		set line = "";
+		set x = -39;
+		while x <= 39 do
+			set ca = x * 0.0458;
+			set cb = y * 0.08333;
+			set a = ca;
+			set b = cb;
+			set s = ".";
+			set i = 0;
+			Li: while i <= 15 do
+				set t = a * a - b * b + ca;
+				set b = 2 * a * b + cb;
+				set a = t;
+				if (a * a + b * b) > 4 then
+					set s = hex(i);
+					leave Li;
+				end if;
+				set i = i + 1;
+			end while;
+			set line = concat(line, s);
+			set x = x + 1;
+		end while;
+		insert into canvas values(y, line);
+		set y = y + 1;
+	end while;
+end;
+//
+delimiter ;
+
+call asciiart;
+select line from canvas order by y;
