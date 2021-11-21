@@ -19,7 +19,7 @@ FOR y FROM -12 TO 12 DO
                 s := hex[i+1]
             FI
         UNTIL s /= " " OD;
-		print(s)
+        print(s)
 	OD;
 	print(new line)
 OD
