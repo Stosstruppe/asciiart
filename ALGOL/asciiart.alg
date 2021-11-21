@@ -10,7 +10,7 @@ FOR y FROM -12 TO 12 DO
         cb := y * 0.08333;
         a := ca;
         b := cb;
-		s := " ";
+        s := " ";
         FOR i FROM 0 TO 15 DO
             t := a * a - b * b + ca;
             b := 2 * a * b + cb;
