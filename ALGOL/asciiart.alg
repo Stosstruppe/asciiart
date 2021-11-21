@@ -5,7 +5,7 @@ CHAR s;
 STRING hex = "0123456789ABCDEF";
 
 FOR y FROM -12 TO 12 DO
-	FOR x FROM -39 TO 39 DO
+    FOR x FROM -39 TO 39 DO
         ca := x * 0.0458;
         cb := y * 0.08333;
         a := ca;
@@ -20,6 +20,6 @@ FOR y FROM -12 TO 12 DO
             FI
         UNTIL s /= " " OD;
         print(s)
-	OD;
-	print(new line)
+    OD;
+    print(new line)
 OD
