@@ -1,67 +1,30 @@
-LibreOffice Calc
-
-' mandel VBA
-Option VBASupport 1
-
-Function mandel(x, y)
-	ca = (x - 39) * 0.0458
-	cb = (y -12) * 0.08333
-	a = ca
-	b = cb
-	s = " "
-	For i = 0 To 15
-		t = a * a - b * b + ca
-		b = 2 * a * b + cb
-		a = t
-		If (a * a + b * b) > 4 Then
-			s = Hex(i)
-			Exit For
-		End If
-	Next
-	mandel = s
-End Function
-
-Function hoge(x, y)
-	hoge = x
-End Function
-
-'
-Cells.Select
-Cells.ColumnWidth = 1.5
-Cells.Font.Name = "Courier New"
-' セルに値がある所だけ
-
-Range(Columns(1), Columns(80)).ColumnWidth = 1.5
-
-=mandel(cell("col") - 40, cell("row") - 13)
-
 ' asciiart LibreOffice Calc VBA
 Option VBASupport 1
 
 Sub Main
-	Range(Columns(1), Columns(80)).ColumnWidth = 1
-	For r = 1 To 25
-		For c = 1 To 79
-			Cells(r, c).Value = mandel(c - 40, r - 13)
-		Next
-	Next
-	Cells.Font.Name = "Courier New"
+    Range(Columns(1), Columns(80)).ColumnWidth = 1
+    For r = 1 To 25
+        For c = 1 To 79
+            Cells(r, c).Value = mandel(c - 40, r - 13)
+        Next
+    Next
+    Cells.Font.Name = "Courier New"
 End Sub
 
 Function mandel(x, y)
-	ca = x * 0.0458
-	cb = y * 0.08333
-	a = ca
-	b = cb
-	s = " "
-	For i = 0 To 15
-		t = a * a - b * b + ca
-		b = 2 * a * b + cb
-		a = t
-		If (a * a + b * b) > 4 Then
-			s = Hex(i)
-			Exit For
-		End If
-	Next
-	mandel = s
+    ca = x * 0.0458
+    cb = y * 0.08333
+    a = ca
+    b = cb
+    s = " "
+    For i = 0 To 15
+        t = a * a - b * b + ca
+        b = 2 * a * b + cb
+        a = t
+        If (a * a + b * b) > 4 Then
+            s = Hex(i)
+            Exit For
+        End If
+    Next
+    mandel = s
 End Function
