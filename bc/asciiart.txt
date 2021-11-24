@@ -1,0 +1,29 @@
+/* asciiart bc */
+scale = 10
+obase = 16
+
+define mandel(ca, cb) {
+	auto a, b, t
+
+	a = ca
+	b = cb
+	for (i = 0; i <= 15; i++) {
+		t = a * a - b * b + ca
+		b = 2 * a * b + cb
+		a = t
+		if ((a * a + b * b) > 4) {
+			print i
+			return
+		}
+	}
+	print " "
+}
+
+for (y = -12; y <= 12; y++) {
+	for (x = -39; x <= 28; x++) {
+		ca = x * 0.0458
+		cb = y * 0.08333
+		dmy = mandel(ca, cb)
+	}
+	print "\n"
+}
