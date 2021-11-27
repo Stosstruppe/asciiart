@@ -1,3 +1,3 @@
 # Prolog
 
-https://ideone.com/3X4uC1
+https://ideone.com/XqIO59

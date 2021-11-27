@@ -2,12 +2,12 @@
 
 mandel(16, _, _, _, _) :- write(' ').
 mandel(I, A, B, CA, CB) :-
-    A1 is A * A - B * B + CA,
-    B1 is 2.0 * A * B + CB,
-    (A1 * A1 + B1 * B1) > 4.0, format('~16R', [I]);
-    A2 is A * A - B * B + CA,
-    B2 is 2.0 * A * B + CB,
-    J is I + 1, mandel(J, A2, B2, CA, CB).
+    An is A * A - B * B + CA,
+    Bn is 2.0 * A * B + CB,
+    (
+        (An * An + Bn * Bn) > 4.0, format('~16R', [I]);
+        J is I + 1, mandel(J, An, Bn, CA, CB)
+    ).
 
 main :-
     forall(between(-12, 12, Y), (
