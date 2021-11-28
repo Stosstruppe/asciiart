@@ -1,4 +1,4 @@
-% asciiart Octabe 4.4.1
+% asciiart Octave 4.4.1
 for y = -12:12
     for x = -39:39
         ca = x * 0.0458;
