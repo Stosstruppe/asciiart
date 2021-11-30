@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>asciiart</title>
+</head>
+
+<body>
+<pre id="output"></pre>
+<script>
+
+"use strict";
+
+let log = "";
+
+function mandel(i, a, b, ca, cb) {
+	if (i == 16) {
+		log += " ";
+	} else {
+		const an = a * a - b * b + ca;
+		const bn = 2 * a * b + cb;
+		if ((an * an + bn * bn) > 4) {
+			log += i.toString(16).toUpperCase();
+		} else {
+			mandel(i + 1, an, bn, ca, cb);
+		}
+	}
+}
+
+onload = function() {
+	for (let y = -12; y <= 12; y++) {
+		for (let x = -39; x <= 39; x++) {
+			const ca = x * 0.0458;
+			const cb = y * 0.08333;
+			mandel(0, ca, cb, ca, cb);
+		}
+		log += "\n";
+	}
+	output.textContent = log;
+};
+
+</script>
+</body>
+</html>
