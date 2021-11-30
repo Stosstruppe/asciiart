@@ -3,7 +3,7 @@
 (defun mandel (i a b ca cb)
     (if (= i 16) (princ " ")
         (let ((an (+ (- (* a a) (* b b)) ca))
-            (bn (+ (* 2 a b) cb)))
+              (bn (+ (* 2 a b) cb)))
             (if (> (+ (* an an) (* bn bn)) 4)
                 (princ (format nil "~X" i))
                 (mandel (+ i 1) an bn ca cb)))))
