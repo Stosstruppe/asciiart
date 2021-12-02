@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>test6</title>
+<style>
+pre {
+	background: #f0f0f0;
+}
+</style>
+</head>
+
+<body>
+<a href="https://webassembly.github.io/wabt/demo/wat2wasm/">wat2wasm demo</a>
+/ <a href="http://www.maroon.dti.ne.jp/lance/js/apply/wasm_code.html">wasm code</a>
+<pre id="output"></pre>
+<pre>
+;; asciiart WebAssembly
+(module
+	(memory (export "mem") 1)
+	(global $p (mut i32) (i32.const 0))
+
+	(func $putchar (param $c i32)
+		(i32.store (global.get $p) (local.get $c))
+		(global.set $p (i32.add (global.get $p) (i32.const 4)))
+	)
+
+	(func $mandel (param $i i32) (param $a f32) (param $b f32) (param $ca f32) (param $cb f32)
+		(local $an f32)
+		(local $bn f32)
+		(local $c i32)
+
+		(i32.ge_s (local.get $i) (i32.const 16))
+		(if (then
+			(call $putchar (i32.const 32))	;; ' '
+		) (else
+			(local.set $an (f32.add (f32.sub (f32.mul (local.get $a) (local.get $a)) (f32.mul (local.get $b) (local.get $b))) (local.get $ca)))
+			(local.set $bn (f32.add (f32.mul (f32.const 2) (f32.mul (local.get $a) (local.get $b))) (local.get $cb)))
+			(f32.gt (f32.add (f32.mul (local.get $an) (local.get $an)) (f32.mul (local.get $bn) (local.get $bn))) (f32.const 4))
+			(if (then
+				(i32.lt_s (local.get $i) (i32.const 10))
+				(if (then
+					(local.set $c (i32.add (local.get $i) (i32.const 48)))
+				) (else
+					(local.set $c (i32.add (local.get $i) (i32.const 55)))
+				))
+				(call $putchar (local.get $c))
+			) (else
+				(call $mandel (i32.add (local.get $i) (i32.const 1)) (local.get $an) (local.get $bn) (local.get $ca) (local.get $cb))
+			))
+		))
+	)
+
+	(func (export "asciiart")
+		(local $x i32)
+		(local $y i32)
+		(local $ca f32)
+		(local $cb f32)
+
+		(global.set $p (i32.const 0))
+		(local.set $y (i32.const -12))
+		(block (loop
+			(br_if 1 (i32.gt_s (local.get $y) (i32.const 12)))
+			(local.set $x (i32.const -39))
+			(block (loop
+				(br_if 1 (i32.gt_s (local.get $x) (i32.const 39)))
+
+				(local.set $ca (f32.mul (f32.convert_s/i32 (local.get $x)) (f32.const 0.0458)))
+				(local.set $cb (f32.mul (f32.convert_s/i32 (local.get $y)) (f32.const 0.08333)))
+				(call $mandel (i32.const 0) (local.get $ca) (local.get $cb) (local.get $ca) (local.get $cb))
+
+				(local.set $x (i32.add (local.get $x) (i32.const 1)))
+				(br 0)
+			))
+			(call $putchar (i32.const 10))	;; '\n'
+			(local.set $y (i32.add (local.get $y) (i32.const 1)))
+			(br 0)
+		))
+	)
+)
+</pre>
+<script>
+
+"use strict";
+
+const wasmCode = new Uint8Array([0,97,115,109,1,0,0,0,1,16,3,96,1,127,0,96,5,127,125,125,125,125,0,96,0,0,3,4,3,0,1,2,5,3,1,0,1,6,6,1,127,1,65,0,11,7,18,2,3,109,101,109,2,0,8,97,115,99,105,105,97,114,116,0,2,10,234,1,3,16,0,35,0,32,0,54,2,0,35,0,65,4,106,36,0,11,114,2,2,125,1,127,32,0,65,16,78,4,64,65,32,16,0,5,32,1,32,1,148,32,2,32,2,148,147,32,3,146,33,5,67,0,0,0,64,32,1,32,2,148,148,32,4,146,33,6,32,5,32,5,148,32,6,32,6,148,146,67,0,0,128,64,94,4,64,32,0,65,10,72,4,64,32,0,65,48,106,33,7,5,32,0,65,55,106,33,7,11,32,7,16,0,5,32,0,65,1,106,32,5,32,6,32,3,32,4,16,1,11,11,11,100,2,2,127,2,125,65,0,36,0,65,116,33,1,2,64,3,64,32,1,65,12,74,13,1,65,89,33,0,2,64,3,64,32,0,65,39,74,13,1,32,0,178,67,200,152,59,61,148,33,2,32,1,178,67,235,168,170,61,148,33,3,65,0,32,2,32,3,32,2,32,3,16,1,32,0,65,1,106,33,0,12,0,11,11,65,10,16,0,32,1,65,1,106,33,1,12,0,11,11,11,0,85,4,110,97,109,101,1,18,2,0,7,112,117,116,99,104,97,114,1,6,109,97,110,100,101,108,2,52,3,0,1,0,1,99,1,8,0,1,105,1,1,97,2,1,98,3,2,99,97,4,2,99,98,5,2,97,110,6,2,98,110,7,1,99,2,4,0,1,120,1,1,121,2,2,99,97,3,2,99,98,7,4,1,0,1,112]);
+
+onload = function() {
+	let wm = new WebAssembly.Module(wasmCode);
+	let wi = new WebAssembly.Instance(wm, []);
+	let mem = wi.exports.mem;
+	let asciiart = wi.exports.asciiart;
+
+	asciiart();
+	let buf = new Uint32Array(mem.buffer);
+	let log = new TextDecoder().decode(buf);
+	output.textContent = log;
+};
+
+</script>
+</body>
+</html>
