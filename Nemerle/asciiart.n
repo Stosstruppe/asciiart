@@ -1,0 +1,24 @@
+// asciiart Nemerle
+using System.Console;
+using Nemerle.Imperative;
+
+for (mutable y = -12; y <= 12; y++) {
+    for (mutable x = -39; x <= 39; x++) {
+        def ca = x * 0.0458;
+        def cb = y * 0.08333;
+        mutable a = ca;
+        mutable b = cb;
+        mutable i;
+        for (i = 0; i <= 15; i++) {
+            def t = a * a - b * b + ca;
+            b = 2 * a * b + cb;
+            a = t;
+            when ((a * a + b * b) > 4) {
+                Write("{0:X}", i);
+                break;
+            }
+        }
+        when (i > 15) Write(" ");
+    }
+    WriteLine();
+}
