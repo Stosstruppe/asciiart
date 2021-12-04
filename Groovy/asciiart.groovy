@@ -6,7 +6,7 @@ for (y = -12; y <= 12; y++) {
         a = ca
         b = cb
         s = " "
-        for (int i = 0; i <= 15; i++) {
+        for (i = 0; i <= 15; i++) {
             t = a * a - b * b + ca
             b = 2 * a * b + cb
             a = t
