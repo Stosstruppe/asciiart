@@ -1,0 +1,24 @@
+# asciiart Icon
+procedure main()
+    hex := "0123456789ABCDEF"
+    every y := -12 to 12 do {
+        every x := -39 to 39 do {
+            ca := x * 0.0458
+            cb := y * 0.08333
+            a := ca
+            b := cb
+            s := " "
+            every i := 0 to 15 do {
+                t := a * a - b * b + ca
+                b := 2 * a * b + cb
+                a := t
+                if (a * a + b * b) > 4 then {
+                    s := hex[i+1]
+                    break
+                }
+            }
+            writes(s)
+        }
+        write()
+    }
+end
