@@ -1,3 +1,5 @@
+! asciiart FORTRAN (gfortran 8.3)
+
 program asciiart
     integer x, y
     do y = -12, 12
@@ -19,6 +21,6 @@ program asciiart
                 write(*, "(1x)", advance="no")
             end if
         end do
-    print *
+        print *
     end do
 end
