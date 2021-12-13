@@ -1,0 +1,7 @@
+# B
+
+[B (ybc) – Try It Online](https://tio.run/##XZDNboMwEITP9lPMjd@IBBKJlKaV@ia2RRWrLa3AUbEqnp2u1@ESLszOt5od8Nqsa5VDTcZaNTq8wWuDvJJaTT0Oe3o6@aXskGb4k6Kf3TggsE4KdXPfUCV0CVfCkDJ6s22JuYQvMXVSCo8Ldoea4O/VfvZIPZ4vONScKeZAmzPRDc8BN@eIhVG0MCPH8dR2bGgyPBlt07ARFoxiGRDXEGIimSBhbUnvWd1PWG5wup8QjniqKFJhB01vnaHiD0WxRXN2WvPSw0I8yD1clPYd6T2weAh8wTHMJLfrXDVUoj@OVxxbPOFE3QrYmCb02KuPqJeYXxQ88vRzc@aqxnTK2JsjC2gjST4kDD2zRS5yXf8B)
+
+## Links
+
+https://github.com/Leushenko/ybc
