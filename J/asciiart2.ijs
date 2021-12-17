@@ -4,10 +4,9 @@ verb : 0 ''
 	z =. c
 	s =. c * 0
 	for. i. 16 do.
-		z =. (z * z) + c
-		b =. (| z) > 2
-		s =. s + b
-		z =. (z * (-. b)) + (b * 10)
+		m =. s ~: 0
+		z =. ((z * z) + c) * (-. m) 
+		s =. s + (m +. (| z) > 2)
 	end.
 	echo '0123456789ABCDEF ' {~ 16 - s
 )
