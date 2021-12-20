@@ -1,6 +1,5 @@
 NB. asciiart J
-require 'format/printf'
-monad : 0 ''
+monad define ''
 	for_k. i:12 do.
 		for_j. i:39 do.
 			c =. (j * 0.0458) j. (k * 0.08333)
@@ -9,7 +8,7 @@ monad : 0 ''
 			for_i. i.16 do.
 				z =. (z * z) + c
 				if. (|z) > 2 do.
-					s =. '%X' sprintf i
+					s =. toupper hfd i
 					break.
 				end.
 			end.
