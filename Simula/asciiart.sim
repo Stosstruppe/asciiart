@@ -1,0 +1,30 @@
+% asciiart Simula (GNU Cim)
+begin
+	real a, b, t, ca, cb;
+	integer i, x, y;
+	character s;
+	text hex;
+
+	hex :- "0123456789ABCDEF";
+	for y := -12 step 1 until 12 do begin
+		for x := -39 step 1 until 39 do begin
+			ca := x * 0.0458;
+			cb := y * 0.08333;
+			a := ca;
+			b := cb;
+			s := ' ';
+			for i := 1 step 1 until 16 do begin
+				t := a * a - b * b + ca;
+				b := 2 * a * b + cb;
+				a := t;
+				if (a * a + b * b) > 4 then begin
+					hex.setpos(i);
+					s := hex.getchar;
+					i := 16
+				end
+			end;
+			outchar(s)
+		end;
+		outimage
+	end
+end
