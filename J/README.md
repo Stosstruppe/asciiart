@@ -4,6 +4,8 @@
 
 [asciiart2.ijs](https://tio.run/##JY29boMwFEZn36f4NuyiuAZDSpCIVPozdMg7EOMojkSQcNWBVHl1YofpDud8516W5dBKdN44102/@CGDpgbnrkaWC7xAXZRUldZaIH1dgd49gVRFWQn6s9MRvT25q0WSEJvRSBhi/nmjSOw0ThJOItuiHyUxNkToca8jXSecz0GewxuY2OcbiUEgYL/KKfiANIj/0dojF8TstQ85a84jeIhv4AVuSFSW66LcvlW79/bj8@sbCQlalgc)
 
+[asciiart3.ijs](https://tio.run/##NU7LbsIwEDxnv2Ju2EUYJ4YQIoFU@jj0wB@0UuQYEYQdCXNKq/566g3qaUYzOzN7GcfjQaGJtuua2x0fFBx2NX5rCv2d2UJRf2MyV2QZhehq5IXEE/RFK10ZYyTmy4dhtpOh9GpdSRo4YClOwDr5JrTuip2C70PTonWnLjjKPEsRaV1TNjx2hpQYUjUsdwp@yEvKpraYZOGRXhM/fLRHIUn@13/Vn8hLcvbcQ@QlFogS35jpvDCrdbmpts@Hl9e3d8xoHP8A)
+
 ## Links
 
 https://www.jsoftware.com/
