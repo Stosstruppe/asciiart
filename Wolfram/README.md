@@ -2,6 +2,8 @@
 
 [asciiart.wls](https://tio.run/##LZA9b8IwEIZn@1ecmCCEKsRQgWgZ2i5sldqqg5XhEhlqlSTI8QCq@O3p3SWL7/x@PJZcY/xxNUZfYd9PE8Cu8h5DhO/2fAxYQzLTb63V6uwbB88wmey0EkFVSPcrJJA9ZKv1ZsdSSdJtkDbGGNY4VSFvbFYlbx2TgFEjS0VSkIoICyhpljAfW1LLxRplQQg3ynY42unQnQ/dGexhlbIlL322X5eLC6/YOXtooju58BGDb07Wp7B8LAqhqJfg8NcWvPORwh/ZGSXWd0mMPyDjaQ@d5sg1hYXZpmC2EnonbLQcKTS5N3KXOSHye6H7/h8)
 
+[asciiart2.wls](https://tio.run/##LY9NawIxEIbPya8YPFk3FnW7xeIHqFDYW0Glh5BDukQb6u5KkoPun9/OjBJIHub9GFLb9Otqm3xl@344Ahsr721I8N1eTsHWMHqRn23Qd1jBeDpTcIflChiyTElx8Y1DaTBYSEG@G/nyDwU38jGwT1QoTF4nb8UcpYxwnuc51pWYFB2qFUGkMqA2rvOUUuB5aYHwKGN/hyd7pER50pufqDsDa5ixg5sO7fF6dWFno9Nlk9zZhX0Kvjlrr2D6bgyHxTY4@6cNMV08fX6Mn@UaouTxF4aTpqGRRvb9Pw)
+
 ## Links
 
 https://www.wolfram.com/wolframscript/
