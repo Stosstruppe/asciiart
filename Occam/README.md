@@ -1,0 +1,9 @@
+# Occam
+
+[asciiart.occ](https://tio.run/##dZNdb4IwFIbv@RWv3gAqhg@ZH5lLkEEkIbIh27IYLwqajGTqMliiv56VSmaH2Ju2z3nantPCIUnITvlKi0JRQLIkTcl3jkNFhacwsLEj@832E5I9txaYvUcODj95SxaAV8vHas3Qx/YIb4m2qunGwLwbjsbWzH503DYmVAwdyzd0kB7iHhLaJbTPWchbREjZiO2TnYdB4GO737DJ0nnGCVMomg43CKGbFDLM@rNwLAVjzIThuArwUtkSgskUUpVNFL4sbBxldKD21YE54s342jxV5sgwDE5leyaEI2xtEnMkLYnKgawEIkQOsXKncC1/6XD4be75DhZBVAocr9dWtpwlLRGaJ5GhQIrpKJZldP8n@JekpPdVqrAVlRfXPFZeXoOeWwO4HNu9HPuAQV@9Mpsy526FfkmrdN0Yr66IPodzFW@EjZmeH@QemtkYql4rpYVojcKNk24nSH8XtJAJ/Ezs7EVhIhTFLw)
+
+## Links
+
+http://occam-pi.org/
+
+http://www.csp-consortium.org/apps/guide.html

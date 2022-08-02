@@ -1,0 +1,37 @@
+-- asciiart occam-pi
+PROC mandel (CHAN BYTE out!)
+  VAL []BYTE hex IS "0123456789ABCDEF" :
+  REAL32 a, b, ca, cb, t :
+  INT i :
+  BYTE s :
+  BOOL end :
+  SEQ y = -12 FOR 25
+    SEQ
+      SEQ x = -39 FOR 79
+        SEQ
+          ca := (REAL32 TRUNC x) * 0.0458
+          cb := (REAL32 TRUNC y) * 0.08333
+          a := ca
+          b := cb
+          i := 0
+          s := ' '
+          end := FALSE
+          WHILE NOT end
+            SEQ
+              t := ((a * a) - (b * b)) + ca
+              b := (2.0 * (a * b)) + cb
+              a := t
+              IF
+                ((a * a) + (b * b)) > 4.0
+                  SEQ
+                    s := hex[i]
+                    end := TRUE
+                TRUE
+                  IF
+                    i < 15
+                      i := i + 1
+                    TRUE
+                      end := TRUE
+          out ! s
+      out ! '*n'
+:
