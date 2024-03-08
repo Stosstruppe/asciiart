@@ -1,4 +1,3 @@
-rem asciiart
 @echo off
 setlocal enabledelayedexpansion
 set hex=0123456789ABCDEF
