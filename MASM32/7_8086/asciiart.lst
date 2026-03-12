@@ -1,0 +1,158 @@
+Microsoft (R) Macro Assembler Version 6.14.8444		    03/12/26 19:45:35
+asciiart.asm						     Page 1 - 1
+
+
+				comment *
+				ml /c /Fl asciiart.asm
+				link16 /t asciiart;
+				*
+ = 0400				BASE	equ	1024
+
+					.model	tiny
+ 0000					.code
+					org	100h
+ 0100				start:
+ 0100  C7 06 0234 R FFF4		mov	_y, -12
+ 0106				Ly:
+ 0106  BF 01D6 R			mov	di, offset buf
+ 0109  FC				cld
+ 010A  C7 06 0232 R FFD9		mov	_x, -39
+ 0110				Lx:
+					; ca = x * 0.0458
+ 0110  B8 002F				mov	ax, 47
+ 0113  F7 2E 0232 R			imul	_x
+ 0117  A3 022C R			mov	_ca, ax
+ 011A  A3 0228 R			mov	_a, ax
+					; cb = y * 0.08333
+ 011D  B8 0055				mov	ax, 85
+ 0120  F7 2E 0234 R			imul	_y
+ 0124  A3 022E R			mov	_cb, ax
+ 0127  A3 022A R			mov	_b, ax
+ 012A  33 C9				xor	cx, cx
+ 012C				Li:
+					; t = a * a - b * b + ca
+ 012C  A1 022A R			mov	ax, _b
+ 012F  8B 16 022A R			mov	dx, _b
+ 0133  E8 0078				call	bmul
+ 0136  8B D8				mov	bx, ax
+ 0138  A1 0228 R			mov	ax, _a
+ 013B  8B 16 0228 R			mov	dx, _a
+ 013F  E8 006C				call	bmul
+ 0142  2B C3				sub	ax, bx
+ 0144  03 06 022C R			add	ax, _ca
+ 0148  50				push	ax	; [
+					; b = 2 * a * b + cb
+ 0149  A1 0228 R			mov	ax, _a
+ 014C  8B 16 022A R			mov	dx, _b
+ 0150  E8 005B				call	bmul
+ 0153  03 C0				add	ax, ax
+ 0155  03 06 022E R			add	ax, _cb
+ 0159  A3 022A R			mov	_b, ax
+ 015C  8F 06 0228 R			pop	_a	; ]
+					; if ((a * a + b * b) > 4) break
+ 0160  A1 0228 R			mov	ax, _a
+ 0163  8B 16 0228 R			mov	dx, _a
+ 0167  E8 0044				call	bmul
+ 016A  8B D8				mov	bx, ax
+ 016C  A1 022A R			mov	ax, _b
+ 016F  8B 16 022A R			mov	dx, _b
+ 0173  E8 0038				call	bmul
+ 0176  03 C3				add	ax, bx
+ 0178  3D 1000				cmp	ax, 4 * BASE
+ 017B  77 06				ja	Librk
+ 017D  41				inc	cx
+ 017E  83 F9 0F				cmp	cx, 15
+ 0181  7E A9				jle	Li
+ 0183				Librk:
+ 0183  8A C1				mov	al, cl
+ 0185  BB 01C5 R			mov	bx, offset hex
+ 0188  D7				xlat
+ 0189  AA				stosb
+ 018A  FF 06 0232 R			inc	_x
+ 018E  83 3E 0232 R 27			cmp	_x, 39
+ 0193  7F 03 E9 FF78			jle	Lx
+
+ 0198  B4 09				mov	ah, 09h
+ 019A  BA 01D6 R			mov	dx, offset buf
+ 019D  CD 21				int	21h
+ 019F  FF 06 0234 R			inc	_y
+ 01A3  83 3E 0234 R 0C			cmp	_y, 12
+ 01A8  7F 03 E9 FF59			jle	Ly
+ 01AD  C3				ret
+
+				; ax = (dx:ax + 512) >> 10
+ 01AE				bmul:
+ 01AE  F7 EA				imul	dx
+ 01B0  05 0200				add	ax, 512
+ 01B3  83 D2 00				adc	dx, 0
+ 01B6  8A C4				mov	al, ah
+ 01B8  8A E2				mov	ah, dl
+ 01BA  8A D6				mov	dl, dh
+ 01BC  D1 DA				rcr	dx, 1
+ 01BE  D1 D8				rcr	ax, 1
+ 01C0  D1 DA				rcr	dx, 1
+ 01C2  D1 D8				rcr	ax, 1
+ 01C4  C3				ret
+
+ 01C5 30 31 32 33 34 35		hex	db	'0123456789ABCDEF '
+       36 37 38 39 41 42
+       43 44 45 46 20
+ 01D6  004F [			buf	db	79 dup (?),0dh,0ah,'$'
+        00
+       ] 0D 0A 24
+ 0228 0000			_a	dw	?
+ 022A 0000			_b	dw	?
+ 022C 0000			_ca	dw	?
+ 022E 0000			_cb	dw	?
+ 0230 0000			_t	dw	?
+ 0232 0000			_x	dw	?
+ 0234 0000			_y	dw	?
+
+					end	start
+Microsoft (R) Macro Assembler Version 6.14.8444		    03/12/26 19:45:35
+asciiart.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+DGROUP . . . . . . . . . . . . .	GROUP
+_TEXT  . . . . . . . . . . . . .	16 Bit	 0236	  Word	  Public  'CODE'	
+_DATA  . . . . . . . . . . . . .	16 Bit	 0000	  Word	  Public  'DATA'	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+@CodeSize  . . . . . . . . . . .	Number	 0000h	 
+@DataSize  . . . . . . . . . . .	Number	 0000h	 
+@Interface . . . . . . . . . . .	Number	 0000h	 
+@Model . . . . . . . . . . . . .	Number	 0001h	 
+@code  . . . . . . . . . . . . .	Text   	 DGROUP
+@data  . . . . . . . . . . . . .	Text   	 DGROUP
+@fardata?  . . . . . . . . . . .	Text   	 FAR_BSS
+@fardata . . . . . . . . . . . .	Text   	 FAR_DATA
+@stack . . . . . . . . . . . . .	Text   	 DGROUP
+BASE . . . . . . . . . . . . . .	Number	 0400h	 
+Librk  . . . . . . . . . . . . .	L Near	 0183	  _TEXT	
+Li . . . . . . . . . . . . . . .	L Near	 012C	  _TEXT	
+Lx . . . . . . . . . . . . . . .	L Near	 0110	  _TEXT	
+Ly . . . . . . . . . . . . . . .	L Near	 0106	  _TEXT	
+_a . . . . . . . . . . . . . . .	Word	 0228	  _TEXT	
+_b . . . . . . . . . . . . . . .	Word	 022A	  _TEXT	
+_ca  . . . . . . . . . . . . . .	Word	 022C	  _TEXT	
+_cb  . . . . . . . . . . . . . .	Word	 022E	  _TEXT	
+_t . . . . . . . . . . . . . . .	Word	 0230	  _TEXT	
+_x . . . . . . . . . . . . . . .	Word	 0232	  _TEXT	
+_y . . . . . . . . . . . . . . .	Word	 0234	  _TEXT	
+bmul . . . . . . . . . . . . . .	L Near	 01AE	  _TEXT	
+buf  . . . . . . . . . . . . . .	Byte	 01D6	  _TEXT	
+hex  . . . . . . . . . . . . . .	Byte	 01C5	  _TEXT	
+start  . . . . . . . . . . . . .	L Near	 0100	  _TEXT	
+
+	   0 Warnings
+	   0 Errors
